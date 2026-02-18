@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #00c6ff);
+    background-size: 400% 400%;
+    animation: bgMove 12s linear infinite;
+}
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    width: 320px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+    text-align: center;
+    opacity: 0.67;
+}
+h2 {
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+input {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+input:focus {
+    box-shadow: 0 0 10px #00ffff;
+}
+button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00bcd4;
+    font-size: 16px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: white;
+}
+.register-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
