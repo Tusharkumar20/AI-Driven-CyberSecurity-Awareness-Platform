@@ -9,20 +9,31 @@ padding:15px 40px;
 
 border-bottom:2px solid cyan;
 
+position:sticky;
+top:0;
+z-index:1000;
+
 }
+
+/* LOGO */
 
 .logo{
 
 color:cyan;
 font-size:26px;
+font-weight:bold;
+
 text-shadow:0 0 10px cyan;
 
 }
+
+/* MENU */
 
 .navbar ul{
 
 display:flex;
 list-style:none;
+align-items:center;
 
 }
 
@@ -46,5 +57,39 @@ transition:0.3s;
 
 color:cyan;
 text-shadow:0 0 10px cyan;
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+gap:10px;
+
+padding:12px 20px;
+
+}
+
+.navbar ul{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.navbar li{
+
+margin:10px;
+
+}
+
+.logo{
+
+font-size:22px;
+
+}
 
 }

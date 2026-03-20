@@ -9,7 +9,7 @@ import Phishing from './pages/Phishing'
 import Malware from './pages/Malware'
 import Ransomware from './pages/Ransomware'
 import DDoS from './pages/DDoS'
-
+import MatrixBackground from './components/MatrixBackground'
 import Navbar from './components/Navbr'
 
 import './App.css'
@@ -20,6 +20,7 @@ function App() {
 
     <BrowserRouter>
 
+      <MatrixBackground/>
       <Navbar />
 
       <Routes>

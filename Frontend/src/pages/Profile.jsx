@@ -12,6 +12,7 @@ const defaultImage =
 
 const [user,setUser] = useState(null)
 const [image,setImage] = useState(defaultImage)
+const [score,setScore] = useState(0)   // ✅ NEW
 
 useEffect(()=>{
 
@@ -22,14 +23,20 @@ setUser(firebaseUser)
 if(firebaseUser){
 
 const savedPhoto = localStorage.getItem("profilePhoto")
+const savedScore = localStorage.getItem("quizScore")   // ✅ NEW
 
 if(savedPhoto){
 setImage(savedPhoto)
 }
 
+if(savedScore){
+setScore(parseInt(savedScore))
+}
+
 }else{
 
 setImage(defaultImage)
+setScore(0)
 
 }
 
@@ -67,6 +74,15 @@ reader.readAsDataURL(file)
 
 
 
+/* RESET SCORE */
+
+const handleResetScore = ()=>{        // ✅ NEW
+localStorage.setItem("quizScore",0)
+setScore(0)
+}
+
+
+
 /* LOGOUT */
 
 const handleLogout = async ()=>{
@@ -75,6 +91,8 @@ await signOut(auth)
 
 localStorage.removeItem("token")
 localStorage.removeItem("profilePhoto")
+// ❌ don't remove score if you want to keep progress
+// localStorage.removeItem("quizScore")
 
 setUser(null)
 
@@ -117,6 +135,16 @@ style={{display:"none"}}
 <h3>{user ? user.displayName || "User" : "XYZ"}</h3>
 
 <p>{user ? user.email : "Guest User"}</p>
+
+{/* 🧠 SCORE SECTION */}
+<div className="score-box">
+  <h3>Quiz Score</h3>
+  <p>{score} Points</p>
+</div>
+
+<button onClick={handleResetScore}>
+Reset Score
+</button>
 
 {user ? (
 
