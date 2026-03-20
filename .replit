@@ -58,4 +58,4 @@ externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["sh", "-c", "npm run dev"]
+run = ["sh", "-c", "(cd Frontend && npm install && npm run build && npm run preview -- --port 5000 --host 0.0.0.0) & (cd backend && node server.js)"]
