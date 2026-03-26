@@ -18,3 +18,4 @@ npm install
 npm run dev
 
 # After this open the local host link generated in the frontend terminal.
+Testing is an essential part of software development that helps ensure the application works correctly and reliably. By including a testing phase in the project, it becomes easier to identify and fix errors before they affect users. It also improves the overall quality and stability of the system, making it more trustworthy. Adding testing to the project and pushing the updates to GitHub reflects good development practices and shows a commitment to building a robust and maintainable application.
