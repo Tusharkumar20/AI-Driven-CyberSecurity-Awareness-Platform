@@ -14,11 +14,11 @@ export default function Login() {
   const handleGoogleLogin = async () => {
     try {
 
-      const result = await signInWithPopup(auth, googleProvider)
+      setError('')
 
+      const result = await signInWithPopup(auth, googleProvider)
       const token = await result.user.getIdToken()
 
-      /* SAVE USER DATA */
       localStorage.setItem('token', token)
       localStorage.setItem('username', result.user.displayName || "XYZ")
       localStorage.setItem('photo', result.user.photoURL)
@@ -38,11 +38,12 @@ export default function Login() {
   const handleEmailLogin = async () => {
     try {
 
+      setError('')
+
       const result = await signInWithEmailAndPassword(auth, email, password)
 
       const token = await result.user.getIdToken()
 
-      /* SAVE USER DATA */
       localStorage.setItem('token', token)
       localStorage.setItem('username', result.user.displayName || "XYZ")
       localStorage.setItem('photo', result.user.photoURL)
@@ -55,12 +56,24 @@ export default function Login() {
 
     } catch (err) {
 
-      if (err.code === 'auth/user-not-found') {
-        setError('User not found')
-      } else if (err.code === 'auth/wrong-password') {
-        setError('Incorrect password')
-      } else {
-        setError('Login failed')
+      if (err.code === 'auth/invalid-email') {
+        setError('Please enter the  email')
+      }
+
+      else if (err.code === 'auth/user-not-found') {
+        setError('Email not registered')
+      }
+
+      else if (err.code === 'auth/wrong-password') {
+        setError('Wrong password')
+      }
+
+      else if (err.code === 'auth/invalid-credential') {
+        setError('Wrong email please try again')
+      }
+
+      else {
+        setError('Login failed, try again')
       }
 
     }

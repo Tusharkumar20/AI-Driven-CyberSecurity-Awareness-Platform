@@ -3,24 +3,22 @@ import Quiz from "../components/Quiz";
 
 export default function Malware() {
 
-  const topic = "Malware";
-
-  const [questions, setQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [questions, setQuestions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
 
   useEffect(() => {
-    generateQuestions();
-  }, []);
+    generateQuestions()
+  }, [])
 
   const generateQuestions = async () => {
 
-    setLoading(true);
-    setError("");
+    setLoading(true)
+    setError("")
 
     try {
 
-      const count = Math.floor(Math.random() * 6) + 10;
+      const count = Math.floor(Math.random() * 6) + 10
 
       const response = await fetch(
         "https://api.groq.com/openai/v1/chat/completions",
@@ -37,11 +35,12 @@ export default function Malware() {
               {
                 role: "system",
                 content: `
-Generate ${count} Malware cyber security MCQ questions.
+Generate ${count} malware cyber security MCQ questions.
 
 Return ONLY JSON array.
 
 Format:
+
 [
  {
   "question": "",
@@ -54,21 +53,22 @@ Format:
             ]
           })
         }
-      );
+      )
 
-      const data = await response.json();
-      const text = data.choices[0].message.content.trim();
-      const parsed = JSON.parse(text);
+      const data = await response.json()
+      const text = data.choices[0].message.content.trim()
 
-      setQuestions(parsed);
-      setLoading(false);
+      const parsed = JSON.parse(text)
+
+      setQuestions(parsed)
+      setLoading(false)
 
     } catch (err) {
-      console.error(err);
-      setError("Failed to generate Malware quiz. Try again.");
-      setLoading(false);
+      console.error(err)
+      setError("Failed to generate questions. Try again.")
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="page malware">
@@ -86,9 +86,8 @@ Format:
       {/* 📘 Definition */}
       <div className="definition-box">
         <p>
-          Malware is malicious software designed to damage, disrupt, or gain
-          unauthorized access to computer systems. It includes viruses, worms,
-          trojans, spyware, and ransomware.
+          Malware is malicious software designed to damage or gain unauthorized
+          access to systems like virus, worm, trojan, spyware and ransomware.
         </p>
       </div>
 
@@ -104,13 +103,12 @@ Format:
 
       <div className="definition-box">
         <p>
-          A user downloads cracked software from an unknown website. The software
-          secretly installs a Trojan that records keystrokes and steals login
-          credentials without the user knowing.
+          User downloads cracked software and Trojan installs secretly and
+          steals login credentials.
         </p>
       </div>
 
-      {/* 🟢 Prevention */}
+      {/* 🛡️ Prevention */}
       <h2>Prevention</h2>
 
       <video className="attack-video" autoPlay loop muted playsInline>
@@ -121,38 +119,39 @@ Format:
       </video>
 
       <ul className="prevention-box">
-        <li>✔ Install antivirus software</li>
-        <li>✔ Download software only from trusted websites</li>
-        <li>✔ Keep your system updated</li>
-        <li>✔ Avoid suspicious email attachments</li>
-        <li>✔ Do not use pirated or cracked software</li>
+        <li>✔ Install antivirus</li>
+        <li>✔ Use trusted websites</li>
+        <li>✔ Keep system updated</li>
+        <li>✔ Avoid suspicious emails</li>
+        <li>✔ Do not use pirated software</li>
       </ul>
 
-      {/* 🎬 Video Link */}
-      <a
-        href="https://www.youtube.com/watch?v=6uSVVCmOH5w"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="video-link"
-      >
-        Watch Full Video
-      </a>
-
-      {/* 🧠 Quiz */}
+      {/* 🧠 Quiz Section */}
       <h2>Test Your Knowledge</h2>
 
       <button className="regen-btn" onClick={generateQuestions}>
         Generate New Questions
       </button>
 
-      {loading && <h3>Generating Malware Quiz...</h3>}
+      {/* ⏳ Loading */}
+      {loading && (
+        <div className="loader">
+          <h3>Generating Questions...</h3>
+        </div>
+      )}
 
-      {error && <p className="error">{error}</p>}
+      {/* ❌ Error */}
+      {error && (
+        <div className="error">
+          <p>{error}</p>
+        </div>
+      )}
 
+      {/* ✅ Quiz */}
       {!loading && !error && (
         <Quiz questions={questions} type="malware" />
       )}
 
     </div>
-  );
+  )
 }

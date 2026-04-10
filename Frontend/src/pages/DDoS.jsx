@@ -1,85 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Quiz from "../components/Quiz";
 
 function Ddos() {
 
-  const questions = [
-    {
-      question: "What is DDoS?",
-      options: ["Attack using multiple systems", "Firewall", "Antivirus", "Protocol"],
-      answer: "Attack using multiple systems"
-    },
-    {
-      question: "DDoS stands for?",
-      options: ["Distributed Denial of Service", "Direct Data Service", "Digital Defense System", "None"],
-      answer: "Distributed Denial of Service"
-    },
-    {
-      question: "Target of DDoS attack?",
-      options: ["Server", "Mouse", "Keyboard", "Monitor"],
-      answer: "Server"
-    },
-    {
-      question: "DDoS causes?",
-      options: ["Slow/Crash website", "Faster internet", "Better security", "None"],
-      answer: "Slow/Crash website"
-    },
-    {
-      question: "Botnet is?",
-      options: ["Network of infected devices", "Antivirus", "Router", "App"],
-      answer: "Network of infected devices"
-    },
-    {
-      question: "Traffic used in DDoS?",
-      options: ["Fake traffic", "Real traffic", "Secure traffic", "Encrypted"],
-      answer: "Fake traffic"
-    },
-    {
-      question: "DDoS uses?",
-      options: ["Multiple systems", "Single system", "Router", "CPU"],
-      answer: "Multiple systems"
-    },
-    {
-      question: "Main goal of DDoS?",
-      options: ["Disrupt service", "Fix bugs", "Speed up system", "Secure data"],
-      answer: "Disrupt service"
-    },
-    {
-      question: "DDoS affects?",
-      options: ["Availability", "Color", "UI", "Battery"],
-      answer: "Availability"
-    },
-    {
-      question: "Flood attack is type of?",
-      options: ["DDoS", "Virus", "Trojan", "Spyware"],
-      answer: "DDoS"
-    },
-    {
-      question: "Service becomes?",
-      options: ["Unavailable", "Fast", "Secure", "Clean"],
-      answer: "Unavailable"
-    },
-    {
-      question: "Prevent using?",
-      options: ["Firewall", "Ignore", "Shutdown", "Delete system"],
-      answer: "Firewall"
-    },
-    {
-      question: "Cloud protection helps?",
-      options: ["Yes", "No", "Maybe", "Never"],
-      answer: "Yes"
-    },
-    {
-      question: "Mitigation tool?",
-      options: ["Load balancer", "Mouse", "Keyboard", "Monitor"],
-      answer: "Load balancer"
-    },
-    {
-      question: "Rate limiting helps?",
-      options: ["Yes", "No", "Maybe", "Never"],
-      answer: "Yes"
+  const topic = "DDoS"
+
+  const [questions, setQuestions] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState("")
+
+  useEffect(() => {
+    generateQuestions()
+  }, [])
+
+  const generateQuestions = async () => {
+
+    setLoading(true)
+    setError("")
+
+    try {
+
+      const count = Math.floor(Math.random() * 6) + 10
+
+      const response = await fetch(
+        "https://api.groq.com/openai/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "llama-3.1-8b-instant",
+            temperature: 1,
+            messages: [
+              {
+                role: "system",
+                content: `
+Generate ${count} DDoS cyber security MCQ questions.
+
+Return ONLY JSON array.
+
+Format:
+[
+ {
+  "question": "",
+  "options": ["", "", "", ""],
+  "answer": ""
+ }
+]
+`
+              }
+            ]
+          })
+        }
+      )
+
+      const data = await response.json()
+      const text = data.choices[0].message.content.trim()
+      const parsed = JSON.parse(text)
+
+      setQuestions(parsed)
+      setLoading(false)
+
+    } catch (err) {
+      console.error(err)
+      setError("Failed to generate DDoS quiz. Try again.")
+      setLoading(false)
     }
-  ];
+  }
 
   return (
     <div className="page ddos">
@@ -98,8 +87,8 @@ function Ddos() {
       <div className="definition-box">
         <p>
           A Distributed Denial of Service (DDoS) attack occurs when multiple
-          compromised systems flood a server, network, or website with massive
-          traffic, making it unavailable to legitimate users.
+          compromised systems flood a server or website with massive traffic,
+          making it unavailable to legitimate users.
         </p>
       </div>
 
@@ -116,13 +105,13 @@ function Ddos() {
       <div className="definition-box">
         <p>
           A popular website is targeted by thousands of infected devices
-          (botnets) sending fake requests simultaneously. The server becomes
-          overloaded and crashes, preventing real users from accessing it.
+          sending fake requests simultaneously. The server crashes and real
+          users cannot access the site.
         </p>
       </div>
 
       {/* 🟢 Prevention */}
-            <video className="attack-video" autoPlay loop muted playsInline controls>
+      <video className="attack-video" autoPlay loop muted playsInline controls>
         <source
           src="https://www.shutterstock.com/shutterstock/videos/3604217725/preview/stock-footage-ddos-attack-for-network-security-animation.webm"
           type="video/mp4"
@@ -132,11 +121,11 @@ function Ddos() {
       <h2>Prevention</h2>
 
       <ul className="prevention-box">
-        <li>✔ Use firewalls and DDoS protection services</li>
+        <li>✔ Use firewalls and DDoS protection</li>
         <li>✔ Implement rate limiting</li>
         <li>✔ Use load balancing</li>
-        <li>✔ Monitor network traffic regularly</li>
-        <li>✔ Use cloud-based protection systems</li>
+        <li>✔ Monitor network traffic</li>
+        <li>✔ Use cloud-based protection</li>
       </ul>
 
       {/* 🎬 Video Link */}
@@ -151,7 +140,18 @@ function Ddos() {
 
       {/* 🧠 Quiz */}
       <h2>Test Your Knowledge</h2>
-      <Quiz questions={questions} type="ddos" />
+
+      <button className="regen-btn" onClick={generateQuestions}>
+        Generate New Questions
+      </button>
+
+      {loading && <h3>Generating DDoS Quiz...</h3>}
+
+      {error && <p className="error">{error}</p>}
+
+      {!loading && !error && (
+        <Quiz questions={questions} type="ddos" />
+      )}
 
     </div>
   );

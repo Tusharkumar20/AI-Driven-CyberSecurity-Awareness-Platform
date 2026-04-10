@@ -26,15 +26,20 @@ export default function Signup() {
 
     } catch (err) {
       console.error(err)
+      setError('Google signup failed')
     }
   }
 
   const handleEmailSignup = async () => {
     try {
 
+      setError('')
+
       const result = await createUserWithEmailAndPassword(auth, email, password)
 
-      await updateProfile(result.user, { displayName: username })
+      await updateProfile(result.user, {
+        displayName: username
+      })
 
       const token = await result.user.getIdToken()
 
@@ -43,28 +48,31 @@ export default function Signup() {
       })
 
       localStorage.setItem('token', token)
-
       navigate('/main')
 
     } catch (err) {
 
       if (err.code === 'auth/email-already-in-use') {
         setError('Email already in use')
-      } else if (err.code === 'auth/weak-password') {
-        setError('Password must be at least 6 characters')
-      } else {
-        setError('Something went wrong')
       }
 
+      else if (err.code === 'auth/invalid-email') {
+        setError('Wrong email')
+      }
+
+      else if (err.code === 'auth/weak-password') {
+        setError('Password must be at least 6 characters')
+      }
+
+      else {
+        setError('Signup failed, try again')
+      }
     }
   }
 
   return (
-
     <div className="page home">
-
       <div className="auth-container">
-
         <div className="auth-box">
 
           <h2>Create Account</h2>
@@ -107,10 +115,7 @@ export default function Signup() {
           </p>
 
         </div>
-
       </div>
-
     </div>
-
   )
 }
