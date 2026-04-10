@@ -59,9 +59,16 @@ export default function Chatbot() {
         }),
       })
       const data = await res.json()
+      if (!res.ok) {
+        console.error('Groq API error:', data)
+        const errMsg = data?.error?.message || `API error ${res.status}`
+        setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ ${errMsg}` }])
+        return
+      }
       const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not get a response. Please try again.'
       setMessages(prev => [...prev, { role: 'assistant', content: reply }])
-    } catch {
+    } catch (err) {
+      console.error('Chatbot fetch error:', err)
       setMessages(prev => [...prev, { role: 'assistant', content: 'Connection error. Please check your internet and try again.' }])
     } finally {
       setLoading(false)
