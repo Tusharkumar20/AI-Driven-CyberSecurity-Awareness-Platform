@@ -107,18 +107,85 @@ html, body {
   gap: 15px;
 }
 
-.nav-right a {
+.nav-link {
   text-decoration: none;
   color: var(--color-text);
   padding: 6px 14px;
   border-radius: var(--radius-sm);
   transition: background var(--transition), color var(--transition);
+  font-size: 15px;
 }
 
-.nav-right a:hover {
+.nav-link:hover {
+  color: var(--color-accent);
+}
+
+.nav-link-active {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.nav-btn {
+  padding: 7px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.nav-btn-outline {
+  color: var(--color-accent);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  background: transparent;
+}
+
+.nav-btn-outline:hover {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: var(--color-accent);
+}
+
+.nav-btn-solid {
   background: var(--color-accent);
   color: black;
-  box-shadow: 0 0 15px rgba(34,197,94,0.7);
+  border: none;
+}
+
+.nav-btn-solid:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 0 15px rgba(34,197,94,0.6);
+}
+
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .nav-hamburger { display: block; }
+
+  .nav-right {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    width: 100%;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 20px;
+    gap: 12px;
+    z-index: 999;
+  }
+
+  .nav-right.open {
+    display: flex;
+  }
 }
 
 
@@ -572,6 +639,282 @@ background:#16a34a;
 .prevention-box li {
   margin: 10px 0;
 }
+/* ================= THREAT TICKER ================= */
+
+.threat-ticker {
+  width: 100%;
+  max-width: 900px;
+  background: rgba(239, 68, 68, 0.07);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.ticker-label {
+  background: #ef4444;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  animation: tickerPulse 2s ease-in-out infinite;
+}
+
+@keyframes tickerPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.ticker-text {
+  color: #e2e8f0;
+  animation: fadeSlide 0.45s ease;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ================= HERO BADGE & BUTTONS ================= */
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.accent-text {
+  color: #22c55e;
+  text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.welcome-user {
+  margin-bottom: 20px;
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: black;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 28px;
+  background: transparent;
+  color: #22c55e;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  margin-left: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
+}
+
+
+/* ================= ENHANCED FEATURE CARDS ================= */
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-icon {
+  font-size: 30px;
+}
+
+.severity-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #22c55e;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 14px;
+  transition: letter-spacing 0.3s ease;
+}
+
+.card-link:hover {
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+
+/* ================= STATS SECTION ================= */
+
+.stats-section {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  width: 100%;
+  margin: 60px 0;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 14px;
+  padding: 24px 36px;
+  text-align: center;
+  min-width: 160px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 22px rgba(34, 197, 94, 0.15);
+  transform: translateY(-4px);
+}
+
+.stat-value {
+  font-size: 38px;
+  font-weight: 800;
+  color: #22c55e;
+  text-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 8px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* ================= HOW IT WORKS ================= */
+
+.how-section {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 70px;
+}
+
+.section-title {
+  font-size: 30px;
+  color: white;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: none;
+}
+
+.steps-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.step-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 14px;
+  padding: 28px 24px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 240px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  border-color: rgba(34, 197, 94, 0.5);
+  background: rgba(34, 197, 94, 0.06);
+  transform: translateY(-4px);
+}
+
+.step-number {
+  font-size: 42px;
+  font-weight: 800;
+  color: rgba(34, 197, 94, 0.25);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.step-card h3 {
+  color: #22c55e;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.step-card p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+  background: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.step-arrow {
+  font-size: 28px;
+  color: rgba(34, 197, 94, 0.35);
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .step-arrow { display: none; }
+  .steps-row { flex-direction: column; align-items: stretch; }
+  .step-card { max-width: 100%; }
+  .stats-section { gap: 16px; }
+  .stat-box { min-width: 130px; padding: 18px 20px; }
+  .btn-secondary { margin-left: 0; margin-top: 12px; }
+  .hero-buttons { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .threat-ticker { font-size: 12px; }
+}
+
+
 /* ================= MATRIX CANVAS ================= */
 
 canvas {

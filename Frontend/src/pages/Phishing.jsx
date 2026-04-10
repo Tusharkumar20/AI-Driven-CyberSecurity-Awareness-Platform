@@ -223,12 +223,12 @@ export default function Phishing() {
       </ul>
 
       {/* Video Link */}
-      
+      <a
         href="https://www.youtube.com/watch?v=XBkzBrXlle0"
         target="_blank"
         rel="noreferrer"
         className="video-link"
-      <a>
+      >
         Watch Full Video
       </a>
 
