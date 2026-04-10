@@ -5,14 +5,20 @@ import Signup from "./pages/Signup";
 import Main from "./pages/Main";
 import Profile from "./pages/Profile";
 
-import Phishing from "./pages/Phishing";
-import Malware from "./pages/Malware";
-import Ransomware from "./pages/Ransomware";
-import DDoS from "./pages/DDoS";
 
-import MatrixBackground from "./components/MatrixBackground";
-import Navbar from "./components/Navbar";
-import ChatBot from "./components/ChatBot";
+
+
+import Phishing from './pages/Phishing'
+import Malware from './pages/Malware'
+import Ransomware from './pages/Ransomware'
+import DDoS from './pages/DDoS'
+import Games from './pages/Games'
+import MatrixBackground from './components/MatrixBackground'
+import Navbar from './components/Navbr'
+import Chatbot from './components/Chatbot'
+
+
+
 
 import "./components/ChatBot.css";
 import "./App.css";
@@ -23,6 +29,7 @@ function App() {
 
       <MatrixBackground />
       <Navbar />
+      <Chatbot />
 
       <Routes>
 
@@ -44,6 +51,7 @@ function App() {
         <Route path="/malware" element={<Malware />} />
         <Route path="/ransomware" element={<Ransomware />} />
         <Route path="/ddos" element={<DDoS />} />
+        <Route path="/games" element={<Games />} />
 
       </Routes>
 

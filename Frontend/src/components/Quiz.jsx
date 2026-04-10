@@ -4,8 +4,16 @@ import { awardXP } from "../utils/xp";
 
 const XP_PER_CORRECT_ANSWER = 10;
 
-export default function Quiz({ questions }) {
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
+export default function Quiz({ questions }) {
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -19,20 +27,18 @@ export default function Quiz({ questions }) {
   const handleAnswer = async (option) => {
 
     let newScore = score;
-
     if (option === questions[current].answer) {
       newScore = score + 1;
       setScore(newScore);
     }
 
     const next = current + 1;
-
     if (next < questions.length) {
       setCurrent(next);
     } else {
 
       setShowResult(true);
-
+      // Award XP only if user is logged in
       if (auth.currentUser) {
         const earned = newScore * XP_PER_CORRECT_ANSWER;
         const updatedXP = await awardXP(earned);
@@ -47,9 +53,7 @@ export default function Quiz({ questions }) {
       {showResult ? (
 
         <div>
-
           <h2>Your Score: {score} / {questions.length}</h2>
-
           {totalXP !== null ? (
             <p>
               +{score * XP_PER_CORRECT_ANSWER} XP earned!  
@@ -68,22 +72,10 @@ export default function Quiz({ questions }) {
       ) : (
 
         <>
-
-          <h3>
-            Question {current + 1} / {questions.length}
-          </h3>
-
           <h2>{questions[current].question}</h2>
-
           <div className="quiz-options">
-
             {questions[current].options.map((opt, index) => (
-
-              <button
-                key={index}
-                onClick={() => handleAnswer(opt)}
-                className="quiz-btn"
-              >
+              <button key={index} onClick={() => handleAnswer(opt)}>
                 {opt}
               </button>
 

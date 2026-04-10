@@ -186,6 +186,10 @@ Format:
         <li>✔ Install antivirus</li>
       </ul>
 
+<<<<<<< HEAD
+=======
+      {/* Video Link */}
+>>>>>>> 64466ac426ba5ab065348a98fab151e57eda557c
       <a
         href="https://www.youtube.com/watch?v=XBkzBrXlle0"
         target="_blank"
@@ -195,6 +199,7 @@ Format:
         Watch Full Video
       </a>
 
+<<<<<<< HEAD
       {/* 🔍 Phishing Detector */}
       <h2>Phishing Detector</h2>
 
@@ -220,8 +225,89 @@ Format:
           <p style={{ color: getColor(result) }}>
             {getLabel(result)}
           </p>
+=======
+      {/* Phishing Detector */}
+      <div className="detector-section">
+        <div className="detector-header">
+          <div className="detector-icon-wrap">🔍</div>
+          <div>
+            <h2 className="detector-title">AI Phishing Detector</h2>
+            <p className="detector-subtitle">Paste any suspicious message to scan it instantly with AI</p>
+          </div>
+>>>>>>> 64466ac426ba5ab065348a98fab151e57eda557c
         </div>
-      )}
+
+        <div className="detector-card">
+          <div className="detector-textarea-wrap">
+            <textarea
+              className="detector-textarea"
+              rows={5}
+              maxLength={2000}
+              placeholder="Paste a suspicious email, SMS, or message here..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <div className="detector-char-count">{message.length} / 2000</div>
+          </div>
+
+          <button
+            className={`detector-btn${loading ? ' loading' : ''}`}
+            onClick={analyzeMessage}
+            disabled={loading || !message.trim()}
+          >
+            {loading ? (
+              <><span className="btn-spinner" /> Analyzing message...</>
+            ) : (
+              <><span>🔍</span> Scan for Phishing</>
+            )}
+          </button>
+
+          {result !== null && (
+            <div className="detector-result" key={result}>
+              <div className="result-gauge-wrap">
+                <div
+                  className="result-gauge"
+                  style={{ '--pct': result, '--clr': getColor(result) }}
+                >
+                  <div className="result-gauge-inner">
+                    <div className="result-pct" style={{ color: getColor(result) }}>{result}%</div>
+                    <div className="result-pct-label">Risk Score</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="result-details">
+                <div className="result-label" style={{ color: getColor(result) }}>
+                  <span>{result >= 70 ? '🚨' : result >= 40 ? '⚠️' : '✅'}</span>
+                  {getLabel(result)}
+                </div>
+                <ul className="result-tips">
+                  {result >= 70 ? (
+                    <>
+                      <li>Do not click any links in this message</li>
+                      <li>Never share personal info or passwords</li>
+                      <li>Report this message as spam immediately</li>
+                      <li>Block the sender and delete the message</li>
+                    </>
+                  ) : result >= 40 ? (
+                    <>
+                      <li>Proceed with caution — verify the sender first</li>
+                      <li>Do not click links until independently confirmed</li>
+                      <li>Contact the organization directly if unsure</li>
+                    </>
+                  ) : (
+                    <>
+                      <li>This message appears relatively safe</li>
+                      <li>Always stay vigilant with unknown senders</li>
+                      <li>When in doubt, don't click — verify first</li>
+                    </>
+                  )}
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* 🧠 Quiz */}
       <h2>Test Your Knowledge</h2>
