@@ -16,7 +16,7 @@ const TICKER_ITEMS = [
 const threats = [
   {
     id: 'phishing',
-    icon: '🎣',
+    icon: '🪝',
     title: 'Phishing Attack',
     severity: 'Critical',
     severityColor: '#ef4444',
@@ -25,7 +25,7 @@ const threats = [
   },
   {
     id: 'malware',
-    icon: '🦠',
+    icon: '☣️',
     title: 'Malware Attack',
     severity: 'High',
     severityColor: '#f97316',
@@ -34,7 +34,7 @@ const threats = [
   },
   {
     id: 'ransomware',
-    icon: '🔒',
+    icon: '🔐',
     title: 'Ransomware',
     severity: 'Critical',
     severityColor: '#ef4444',
@@ -43,7 +43,7 @@ const threats = [
   },
   {
     id: 'ddos',
-    icon: '💥',
+    icon: '⚡',
     title: 'DDoS Attack',
     severity: 'High',
     severityColor: '#f97316',
@@ -148,7 +148,16 @@ export default function Main() {
           {threats.map(t => (
             <div className="feature-card" key={t.id}>
               <div className="card-top">
-                <span className="card-icon">{t.icon}</span>
+                <div
+                  className="card-icon-wrap"
+                  style={{
+                    background: t.severityColor + '18',
+                    border: `1px solid ${t.severityColor}40`,
+                    boxShadow: `0 0 16px ${t.severityColor}30`,
+                  }}
+                >
+                  <span className="card-icon">{t.icon}</span>
+                </div>
                 <span
                   className="severity-badge"
                   style={{

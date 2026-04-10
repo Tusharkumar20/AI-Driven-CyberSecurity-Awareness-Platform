@@ -755,8 +755,24 @@ background:#16a34a;
   margin-bottom: 12px;
 }
 
+.card-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+.feature-card:hover .card-icon-wrap {
+  transform: scale(1.12) rotate(-4deg);
+}
+
 .card-icon {
-  font-size: 30px;
+  font-size: 28px;
+  line-height: 1;
 }
 
 .severity-badge {
