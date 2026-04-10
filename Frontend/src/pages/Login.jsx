@@ -23,7 +23,7 @@ export default function Login() {
       localStorage.setItem('username', result.user.displayName || "XYZ")
       localStorage.setItem('photo', result.user.photoURL)
 
-      await fetch('http://localhost:3000/api/profile', {
+      await fetch('/api/profile', {
         headers: { Authorization: `Bearer ${token}` }
       })
 
@@ -47,7 +47,7 @@ export default function Login() {
       localStorage.setItem('username', result.user.displayName || "XYZ")
       localStorage.setItem('photo', result.user.photoURL)
 
-      await fetch('http://localhost:3000/api/profile', {
+      await fetch('/api/profile', {
         headers: { Authorization: `Bearer ${token}` }
       })
 

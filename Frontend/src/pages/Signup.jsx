@@ -17,7 +17,7 @@ export default function Signup() {
       const result = await signInWithPopup(auth, googleProvider)
       const token = await result.user.getIdToken()
 
-      await fetch('http://localhost:3000/api/profile', {
+      await fetch('/api/profile', {
         headers: { Authorization: `Bearer ${token}` }
       })
 
@@ -38,7 +38,7 @@ export default function Signup() {
 
       const token = await result.user.getIdToken()
 
-      await fetch('http://localhost:3000/api/profile', {
+      await fetch('/api/profile', {
         headers: { Authorization: `Bearer ${token}` }
       })
 

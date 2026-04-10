@@ -11,6 +11,7 @@ export default function Profile() {
   const [xp, setXP] = useState(0)
 
   useEffect(() => {
+    if (!auth) return
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser)
       if (firebaseUser) {
@@ -20,7 +21,7 @@ export default function Profile() {
         // Fetch XP from backend
         try {
           const token = await firebaseUser.getIdToken(true)
-          const res = await fetch('http://localhost:3000/api/profile', {
+          const res = await fetch('/api/profile', {
             headers: { Authorization: `Bearer ${token}` }
           })
           const data = await res.json()
@@ -52,8 +53,9 @@ export default function Profile() {
   /* RESET XP */
   const handleResetXP = async () => {
     try {
+      if (!auth?.currentUser) return
       const token = await auth.currentUser.getIdToken(true)
-      await fetch('http://localhost:3000/api/profile', {
+      await fetch('/api/profile', {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
