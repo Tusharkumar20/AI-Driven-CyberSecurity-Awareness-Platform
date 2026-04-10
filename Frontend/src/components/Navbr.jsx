@@ -41,6 +41,14 @@ function Navbar() {
         </Link>
 
         <Link
+          to="/games"
+          className={`nav-link ${isActive("/games") ? "nav-link-active" : ""}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          🎮 Games
+        </Link>
+
+        <Link
           to="/profile"
           className={`nav-link ${isActive("/profile") ? "nav-link-active" : ""}`}
           onClick={() => setMenuOpen(false)}
