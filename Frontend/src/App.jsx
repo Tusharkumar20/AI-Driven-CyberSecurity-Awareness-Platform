@@ -11,6 +11,7 @@ import Ransomware from './pages/Ransomware'
 import DDoS from './pages/DDoS'
 import MatrixBackground from './components/MatrixBackground'
 import Navbar from './components/Navbr'
+import Chatbot from './components/Chatbot'
 
 import './App.css'
 
@@ -22,6 +23,7 @@ function App() {
 
       <MatrixBackground/>
       <Navbar />
+      <Chatbot />
 
       <Routes>
 
