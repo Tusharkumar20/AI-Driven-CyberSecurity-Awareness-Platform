@@ -186,10 +186,7 @@ Format:
         <li>✔ Install antivirus</li>
       </ul>
 
-<<<<<<< HEAD
-=======
       {/* Video Link */}
->>>>>>> 64466ac426ba5ab065348a98fab151e57eda557c
       <a
         href="https://www.youtube.com/watch?v=XBkzBrXlle0"
         target="_blank"
@@ -199,33 +196,6 @@ Format:
         Watch Full Video
       </a>
 
-<<<<<<< HEAD
-      {/* 🔍 Phishing Detector */}
-      <h2>Phishing Detector</h2>
-
-      <textarea
-        rows={6}
-        cols={50}
-        placeholder="Paste suspicious message..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-
-      <br />
-
-      <button onClick={analyzeMessage} disabled={loading}>
-        {loading ? "Analyzing..." : "Analyze Message"}
-      </button>
-
-      {result !== null && (
-        <div>
-          <h2 style={{ color: getColor(result) }}>
-            {result}% Spam Likelihood
-          </h2>
-          <p style={{ color: getColor(result) }}>
-            {getLabel(result)}
-          </p>
-=======
       {/* Phishing Detector */}
       <div className="detector-section">
         <div className="detector-header">
@@ -234,7 +204,6 @@ Format:
             <h2 className="detector-title">AI Phishing Detector</h2>
             <p className="detector-subtitle">Paste any suspicious message to scan it instantly with AI</p>
           </div>
->>>>>>> 64466ac426ba5ab065348a98fab151e57eda557c
         </div>
 
         <div className="detector-card">
