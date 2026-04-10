@@ -92,6 +92,7 @@ export default function Main() {
   const statsRef = useRef(null)
 
   useEffect(() => {
+    if (!auth) return
     const unsubscribe = onAuthStateChanged(auth, (u) => setUser(u))
     return () => unsubscribe()
   }, [])

@@ -9,12 +9,13 @@ function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
+    if (!auth) return
     const unsub = onAuthStateChanged(auth, (u) => setUser(u))
     return () => unsub()
   }, [])
 
   const handleLogout = async () => {
-    await signOut(auth)
+    if (auth) await signOut(auth)
     localStorage.removeItem("token")
     setUser(null)
     setMenuOpen(false)
