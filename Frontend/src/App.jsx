@@ -15,7 +15,7 @@ import DDoS from './pages/DDoS'
 import Games from './pages/Games'
 import MatrixBackground from './components/MatrixBackground'
 import Navbar from './components/Navbr'
-import Chatbot from './components/Chatbot'
+import ChatBot from './components/Chatbot'
 
 
 
