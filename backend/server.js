@@ -13,5 +13,11 @@ app.use(express.json());
 const profileRoutes = require('./routes/profile');
 app.use('/api/profile', profileRoutes);
 
+const chatRoutes = require('./routes/chat');
+app.use('/api/chat', chatRoutes);
+
+const searchRoutes = require('./routes/search');
+app.use('/api/search', searchRoutes);
+
 const PORT = process.env.BACKEND_PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
