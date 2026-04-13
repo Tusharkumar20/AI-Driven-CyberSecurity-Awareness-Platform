@@ -12,7 +12,7 @@ import DDoS from './pages/DDoS'
 import Games from './pages/Games'
 import MatrixBackground from './components/MatrixBackground'
 import Navbar from './components/Navbr'
-//import Chatbot from './components/Chatbot'
+import Chatbot from './components/Chatbot'
 
 import "./App.css";
 
@@ -22,7 +22,7 @@ function App() {
 
       <MatrixBackground />
       <Navbar />
-      {/* <Chatbot /> */}
+      <Chatbot />
 
       <Routes>
 
