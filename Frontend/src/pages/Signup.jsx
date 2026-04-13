@@ -5,20 +5,17 @@ import { useNavigate, Link } from 'react-router-dom'
 
 export default function Signup() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState('')
+  const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [error, setError]       = useState('')
+  const [loading, setLoading]   = useState(false)
+  const [showPw, setShowPw]     = useState(false)
 
   const handleGoogleSignup = async () => {
-    if (!firebaseConfigured || !auth) {
-      setError('Google sign-up is not set up yet. Please contact the site administrator to configure Firebase.')
-      return
-    }
+    if (!firebaseConfigured || !auth) { setError('Google sign-up is not configured yet.'); return }
     try {
-      setError('')
-      setLoading(true)
+      setError(''); setLoading(true)
       const result = await signInWithPopup(auth, googleProvider)
       const token = await result.user.getIdToken()
       await fetch('/api/profile', { headers: { Authorization: `Bearer ${token}` } })
@@ -27,31 +24,18 @@ export default function Signup() {
       localStorage.setItem('photo', result.user.photoURL || '')
       navigate('/main')
     } catch (err) {
-      console.error(err)
-      if (err.code === 'auth/popup-closed-by-user') {
-        setError('Sign-in popup was closed. Please try again.')
-      } else if (err.code === 'auth/popup-blocked') {
-        setError('Popup was blocked by your browser. Please allow popups for this site.')
-      } else if (err.code === 'auth/cancelled-popup-request') {
-        setError('')
-      } else if (err.code === 'auth/unauthorized-domain') {
-        setError('This domain is not authorised in Firebase. Add it to the Authorised Domains list in Firebase Console.')
-      } else {
-        setError('Google sign-up failed. Please try again.')
-      }
-    } finally {
-      setLoading(false)
-    }
+      if (err.code === 'auth/popup-closed-by-user') setError('Popup closed. Please try again.')
+      else if (err.code === 'auth/popup-blocked') setError('Popup blocked — allow popups for this site.')
+      else if (err.code === 'auth/cancelled-popup-request') setError('')
+      else if (err.code === 'auth/unauthorized-domain') setError('Domain not authorised in Firebase Console.')
+      else setError('Google sign-up failed. Please try again.')
+    } finally { setLoading(false) }
   }
 
   const handleEmailSignup = async () => {
-    if (!firebaseConfigured || !auth) {
-      setError('Authentication is not configured yet.')
-      return
-    }
+    if (!firebaseConfigured || !auth) { setError('Authentication is not configured yet.'); return }
     try {
-      setError('')
-      setLoading(true)
+      setError(''); setLoading(true)
       const result = await createUserWithEmailAndPassword(auth, email, password)
       await updateProfile(result.user, { displayName: username })
       const token = await result.user.getIdToken()
@@ -61,28 +45,47 @@ export default function Signup() {
       localStorage.setItem('photo', '')
       navigate('/main')
     } catch (err) {
-      if (err.code === 'auth/email-already-in-use') setError('This email is already registered. Try logging in.')
-      else if (err.code === 'auth/invalid-email')    setError('Please enter a valid email address.')
-      else if (err.code === 'auth/weak-password')    setError('Password must be at least 6 characters.')
+      if (err.code === 'auth/email-already-in-use') setError('This email is already registered.')
+      else if (err.code === 'auth/invalid-email')   setError('Please enter a valid email address.')
+      else if (err.code === 'auth/weak-password')   setError('Password must be at least 6 characters.')
       else setError('Sign-up failed. Please try again.')
-    } finally {
-      setLoading(false)
-    }
+    } finally { setLoading(false) }
   }
 
   return (
-    <div className="page home">
-      <div className="auth-container">
-        <div className="auth-box">
-          <div className="auth-logo">🛡️</div>
-          <h2>Create Account</h2>
-          <p className="auth-sub">Start your cybersecurity journey today</p>
+    <div className="auth-split">
 
-          <button
-            className="google-btn"
-            onClick={handleGoogleSignup}
-            disabled={loading}
-          >
+      {/* LEFT PANEL */}
+      <div className="auth-split-left">
+        <div className="auth-split-left-inner">
+          <div className="auth-brand-icon">🛡️</div>
+          <h1 className="auth-brand-title">Join CyberSafe</h1>
+          <p className="auth-brand-sub">Build real-world cyber defence skills today</p>
+          <div className="auth-features">
+            {[
+              { icon: '🏆', text: 'Earn XP & unlock badges' },
+              { icon: '🧠', text: 'AI-generated quizzes' },
+              { icon: '🔐', text: 'Learn to spot threats' },
+              { icon: '📊', text: 'Track your progress' },
+            ].map(f => (
+              <div key={f.text} className="auth-feature-item">
+                <span className="auth-feature-icon">{f.icon}</span>
+                <span>{f.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* RIGHT PANEL */}
+      <div className="auth-split-right">
+        <div className="auth-form-card">
+          <div className="auth-form-header">
+            <h2>Create Account</h2>
+            <p>Start your cybersecurity journey today</p>
+          </div>
+
+          <button className="google-btn" onClick={handleGoogleSignup} disabled={loading}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
               <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z" fill="#34A853"/>
@@ -94,43 +97,38 @@ export default function Signup() {
 
           <div className="auth-divider"><span>or sign up with email</span></div>
 
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            disabled={loading}
-          />
+          <div className="auth-field">
+            <label>Username</label>
+            <input type="text" placeholder="Cyber Defender" value={username}
+              onChange={e => setUsername(e.target.value)} disabled={loading} />
+          </div>
 
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            disabled={loading}
-          />
+          <div className="auth-field">
+            <label>Email</label>
+            <input type="email" placeholder="you@example.com" value={email}
+              onChange={e => setEmail(e.target.value)} disabled={loading} />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Password (min 6 characters)"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            disabled={loading}
-            onKeyDown={e => e.key === 'Enter' && handleEmailSignup()}
-          />
+          <div className="auth-field">
+            <label>Password</label>
+            <div className="auth-pw-wrap">
+              <input type={showPw ? 'text' : 'password'} placeholder="Min. 6 characters" value={password}
+                onChange={e => setPassword(e.target.value)} disabled={loading}
+                onKeyDown={e => e.key === 'Enter' && handleEmailSignup()} />
+              <button className="auth-pw-toggle" onClick={() => setShowPw(s => !s)} type="button">
+                {showPw ? '🙈' : '👁️'}
+              </button>
+            </div>
+          </div>
 
-          {error && <p className="auth-error">{error}</p>}
+          {error && <div className="auth-error">{error}</div>}
 
-          <button
-            className="auth-submit-btn"
-            onClick={handleEmailSignup}
-            disabled={loading}
-          >
-            {loading ? 'Creating account…' : 'Sign Up'}
+          <button className="auth-submit-btn" onClick={handleEmailSignup} disabled={loading}>
+            {loading ? 'Creating account…' : 'Create Account →'}
           </button>
 
           <p className="auth-link">
-            Already have an account? <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login">Sign In</Link>
           </p>
         </div>
       </div>

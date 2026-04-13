@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -15,32 +15,35 @@ import Chatbot from './components/Chatbot'
 
 import "./App.css";
 
-function App() {
+const AUTH_ROUTES = ['/login', '/signup']
+
+function Layout() {
+  const location = useLocation()
+  const isAuth = AUTH_ROUTES.includes(location.pathname)
   return (
-    <BrowserRouter>
-
-      <Navbar />
-      <Chatbot />
-
+    <>
+      {!isAuth && <Navbar />}
+      {!isAuth && <Chatbot />}
       <Routes>
-
         <Route path="/" element={<Navigate to="/main" />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
         <Route path="/main" element={<Main />} />
-
         <Route path="/profile" element={<Profile />} />
-
         <Route path="/phishing" element={<Phishing />} />
         <Route path="/malware" element={<Malware />} />
         <Route path="/ransomware" element={<Ransomware />} />
         <Route path="/ddos" element={<DDoS />} />
         <Route path="/games" element={<Games />} />
-
       </Routes>
+    </>
+  )
+}
 
+function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }
