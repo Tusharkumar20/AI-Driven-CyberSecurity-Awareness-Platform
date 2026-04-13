@@ -10,7 +10,6 @@ import Malware from './pages/Malware'
 import Ransomware from './pages/Ransomware'
 import DDoS from './pages/DDoS'
 import Games from './pages/Games'
-import MatrixBackground from './components/MatrixBackground'
 import Navbar from './components/Navbr'
 import Chatbot from './components/Chatbot'
 
@@ -20,7 +19,6 @@ function App() {
   return (
     <BrowserRouter>
 
-      <MatrixBackground />
       <Navbar />
       <Chatbot />
 
