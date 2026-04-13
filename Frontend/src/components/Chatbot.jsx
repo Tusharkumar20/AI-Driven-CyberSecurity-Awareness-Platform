@@ -89,7 +89,7 @@ const SUGGESTED = [
   'Analyze: Dear customer, your account is suspended. Click here now.',
 ]
 
-const WELCOME = `👋 Hi! I'm **CyberGuard** — your AI-powered cyber awareness assistant!\n\nI can answer questions about cybersecurity, analyze suspicious emails, check password strength, and more — all powered by Groq AI.\n\nWhat would you like to know?`
+const WELCOME = `👋 Hi! I'm **CyberGuard** — your AI-powered cyber awareness assistant!\n\nI can answer questions about cybersecurity, analyze suspicious emails, check password strength, and more — all\n\nWhat would you like to know?`
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
@@ -198,7 +198,7 @@ export default function Chatbot() {
               <div className="chatbot-avatar">🛡️</div>
               <div>
                 <div className="chatbot-name">CyberGuard AI</div>
-                <div className="chatbot-status">● Powered by Groq</div>
+                
               </div>
             </div>
             <div className="chatbot-header-actions">
