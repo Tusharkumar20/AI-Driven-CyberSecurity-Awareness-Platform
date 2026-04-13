@@ -3,6 +3,8 @@ import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
+const DEMO_MODE = !firebaseConfigured
+
 export default function Login() {
   const navigate = useNavigate()
   const [email, setEmail]       = useState('')
@@ -84,6 +86,24 @@ export default function Login() {
             <h2>Welcome Back</h2>
             <p>Sign in to continue your training</p>
           </div>
+
+          {DEMO_MODE && (
+            <div className="auth-demo-notice">
+              <div className="auth-demo-icon">⚙️</div>
+              <div>
+                <strong>Firebase not configured</strong>
+                <p>Authentication requires Firebase credentials. You can still explore the full app as a guest.</p>
+              </div>
+            </div>
+          )}
+
+          {DEMO_MODE && (
+            <button className="auth-guest-btn" onClick={() => navigate('/main')}>
+              🚀 Browse as Guest — No Login Required
+            </button>
+          )}
+
+          {DEMO_MODE && <div className="auth-or-divider"><span>or sign in with Firebase</span></div>}
 
           <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">

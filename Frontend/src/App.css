@@ -3367,6 +3367,69 @@ html, body {
 
 .auth-link a:hover { text-decoration: underline; }
 
+/* Demo / Firebase notice */
+.auth-demo-notice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(251,191,36,0.08);
+  border: 1px solid rgba(251,191,36,0.3);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.auth-demo-notice strong {
+  display: block;
+  color: #fbbf24;
+  margin-bottom: 2px;
+  font-size: 0.88rem;
+}
+
+.auth-demo-notice p { color: rgba(255,255,255,0.55); margin: 0; }
+
+.auth-demo-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+/* Guest button */
+.auth-guest-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 18px rgba(139,92,246,0.45);
+  margin-bottom: 16px;
+}
+
+.auth-guest-btn:hover { opacity: 0.88; box-shadow: 0 6px 24px rgba(139,92,246,0.6); }
+
+/* "or" divider for firebase section */
+.auth-or-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  color: rgba(255,255,255,0.28);
+  font-size: 0.78rem;
+}
+
+.auth-or-divider::before,
+.auth-or-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .auth-split { flex-direction: column; }
