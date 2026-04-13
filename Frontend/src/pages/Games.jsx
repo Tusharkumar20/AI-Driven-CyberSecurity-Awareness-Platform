@@ -677,31 +677,142 @@ function BlitzGame({ onBack }) {
 }
 
 // ═══════════════════════════════════════════════════════
+// GAME SVG ILLUSTRATIONS
+// ═══════════════════════════════════════════════════════
+
+const SVG_Phishing = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="rgba(249,115,22,0.1)" stroke="rgba(249,115,22,0.25)" strokeWidth="1.5"/>
+    <rect x="18" y="28" width="38" height="28" rx="4" fill="rgba(249,115,22,0.15)" stroke="#f97316" strokeWidth="1.5"/>
+    <path d="M18 32 L40 46 L62 32" stroke="#f97316" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M46 20 Q56 12 60 24" stroke="#fb923c" strokeWidth="2" strokeLinecap="round" fill="none"/>
+    <circle cx="60" cy="24" r="3" fill="#f97316"/>
+    <path d="M60 27 L60 42" stroke="#fb923c" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2"/>
+    <path d="M57 41 Q60 48 63 41" stroke="#f97316" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+    <circle cx="40" cy="38" r="4" fill="rgba(249,115,22,0.3)" stroke="#f97316" strokeWidth="1"/>
+    <path d="M38 38 L42 38 M40 36 L40 40" stroke="#f97316" strokeWidth="1" strokeLinecap="round"/>
+  </svg>
+)
+
+const SVG_Password = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.25)" strokeWidth="1.5"/>
+    <rect x="22" y="36" width="36" height="26" rx="5" fill="rgba(34,197,94,0.15)" stroke="#22c55e" strokeWidth="1.5"/>
+    <path d="M30 36 L30 28 Q30 18 40 18 Q50 18 50 28 L50 36" stroke="#22c55e" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+    <circle cx="40" cy="50" r="5" fill="rgba(34,197,94,0.3)" stroke="#22c55e" strokeWidth="1.5"/>
+    <rect x="38.5" y="50" width="3" height="5" rx="1" fill="#22c55e"/>
+    <circle cx="28" cy="56" r="2" fill="rgba(34,197,94,0.5)"/>
+    <circle cx="40" cy="60" r="2" fill="rgba(34,197,94,0.5)"/>
+    <circle cx="52" cy="56" r="2" fill="rgba(34,197,94,0.5)"/>
+    <path d="M28 56 L52 56" stroke="rgba(34,197,94,0.3)" strokeWidth="1" strokeDasharray="3 3"/>
+  </svg>
+)
+
+const SVG_Spot = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="rgba(239,68,68,0.1)" stroke="rgba(239,68,68,0.25)" strokeWidth="1.5"/>
+    <rect x="16" y="20" width="40" height="36" rx="4" fill="rgba(239,68,68,0.1)" stroke="#ef4444" strokeWidth="1.5"/>
+    <line x1="22" y1="30" x2="44" y2="30" stroke="rgba(239,68,68,0.5)" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="22" y1="38" x2="50" y2="38" stroke="rgba(239,68,68,0.3)" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="22" y1="46" x2="40" y2="46" stroke="rgba(239,68,68,0.3)" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="57" cy="57" r="12" fill="rgba(239,68,68,0.15)" stroke="#ef4444" strokeWidth="2"/>
+    <circle cx="55" cy="55" r="7" stroke="#ef4444" strokeWidth="1.5" fill="none"/>
+    <path d="M60 60 L66 66" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round"/>
+    <path d="M53 55 L57 55 M55 53 L55 57" stroke="#ef4444" strokeWidth="1.2" strokeLinecap="round"/>
+  </svg>
+)
+
+const SVG_Defense = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="rgba(99,102,241,0.1)" stroke="rgba(99,102,241,0.25)" strokeWidth="1.5"/>
+    <path d="M40 14 L58 22 L58 42 Q58 58 40 66 Q22 58 22 42 L22 22 Z" fill="rgba(99,102,241,0.15)" stroke="#6366f1" strokeWidth="1.8" strokeLinejoin="round"/>
+    <path d="M33 40 L38 45 L48 35" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M14 30 L20 34" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M14 40 L20 40" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M14 50 L20 46" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
+    <circle cx="12" cy="30" r="3" fill="rgba(239,68,68,0.5)" stroke="#ef4444" strokeWidth="1"/>
+    <circle cx="12" cy="40" r="3" fill="rgba(239,68,68,0.5)" stroke="#ef4444" strokeWidth="1"/>
+    <circle cx="12" cy="50" r="3" fill="rgba(239,68,68,0.5)" stroke="#ef4444" strokeWidth="1"/>
+    <circle cx="68" cy="30" r="3" fill="rgba(239,68,68,0.5)" stroke="#ef4444" strokeWidth="1"/>
+    <path d="M66 30 L60 34" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+)
+
+const SVG_Social = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="rgba(236,72,153,0.1)" stroke="rgba(236,72,153,0.25)" strokeWidth="1.5"/>
+    <circle cx="40" cy="30" r="10" fill="rgba(236,72,153,0.15)" stroke="#ec4899" strokeWidth="1.5"/>
+    <path d="M22 60 Q22 48 40 48 Q58 48 58 60" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+    <path d="M30 24 Q40 14 50 24" stroke="#ec4899" strokeWidth="1.5" strokeLinecap="round" fill="rgba(236,72,153,0.1)"/>
+    <ellipse cx="34" cy="29" rx="2" ry="2.5" fill="#ec4899"/>
+    <ellipse cx="46" cy="29" rx="2" ry="2.5" fill="#ec4899"/>
+    <path d="M36 34 Q40 38 44 34" stroke="#ec4899" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+    <rect x="52" y="14" width="16" height="12" rx="3" fill="rgba(236,72,153,0.15)" stroke="#ec4899" strokeWidth="1"/>
+    <path d="M55 19 L62 19 M55 22 L60 22" stroke="#ec4899" strokeWidth="1" strokeLinecap="round"/>
+    <path d="M52 22 L48 26" stroke="#ec4899" strokeWidth="1" strokeLinecap="round"/>
+  </svg>
+)
+
+const SVG_Blitz = () => (
+  <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="40" cy="40" r="38" fill="rgba(234,179,8,0.1)" stroke="rgba(234,179,8,0.25)" strokeWidth="1.5"/>
+    <circle cx="40" cy="40" r="22" stroke="#eab308" strokeWidth="1.5" fill="none" strokeDasharray="4 2"/>
+    <path d="M44 18 L36 40 L44 40 L36 62" stroke="#eab308" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <circle cx="40" cy="40" r="4" fill="rgba(234,179,8,0.3)" stroke="#eab308" strokeWidth="1"/>
+    <path d="M40 14 L40 10" stroke="#eab308" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M54 20 L57 17" stroke="#eab308" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M60 34 L64 34" stroke="#eab308" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M26 20 L23 17" stroke="#eab308" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M20 34 L16 34" stroke="#eab308" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+)
+
+const GAME_SVGS = {
+  phishing: SVG_Phishing,
+  password: SVG_Password,
+  spot: SVG_Spot,
+  defense: SVG_Defense,
+  story: SVG_Social,
+  blitz: SVG_Blitz,
+}
+
+// ═══════════════════════════════════════════════════════
 // GAME CARDS LOBBY
 // ═══════════════════════════════════════════════════════
 
 const GAME_LIST = [
-  { id: 'phishing', icon: '🎣', title: 'Phishing or Legit?', desc: 'Judge real-looking emails — is it a phishing attempt or the genuine article?', difficulty: 'Medium', color: '#f97316', players: '8 emails' },
-  { id: 'password', icon: '🔑', title: 'Password Fortress', desc: 'Test your passwords live and see exactly how long they would take to crack.', difficulty: 'Easy', color: '#22c55e', players: 'Sandbox' },
-  { id: 'spot', icon: '🚩', title: 'Spot the Red Flags', desc: 'Find every suspicious element hidden inside a fake phishing email.', difficulty: 'Hard', color: '#ef4444', players: '5 flags' },
-  { id: 'defense', icon: '🛡️', title: 'Cyber Defense', desc: 'Attacks are incoming! Pick the right tool to block each one before it breaks through.', difficulty: 'Medium', color: '#6366f1', players: '7 waves' },
-  { id: 'story', icon: '🎭', title: 'Social Engineering', desc: 'A branching scenario game — make the right choices or get compromised.', difficulty: 'Hard', color: '#ec4899', players: '4 scenarios' },
-  { id: 'blitz', icon: '⚡', title: 'True or False Blitz', desc: 'Answer 12 rapid-fire cybersecurity questions before the 10-second timer runs out.', difficulty: 'Medium', color: '#eab308', players: '12 questions' },
+  { id: 'phishing', title: 'Phishing or Legit?', desc: 'Judge real-looking emails — is it a phishing attempt or the genuine article?', difficulty: 'Medium', color: '#f97316', colorDim: 'rgba(249,115,22,0.12)', players: '8 emails', tag: 'Detection' },
+  { id: 'password', title: 'Password Fortress',  desc: 'Test your passwords live and see exactly how long they would take to crack.',   difficulty: 'Easy',   color: '#22c55e', colorDim: 'rgba(34,197,94,0.12)',  players: 'Sandbox',   tag: 'Sandbox'   },
+  { id: 'spot',     title: 'Spot the Red Flags', desc: 'Find every suspicious element hidden inside a fake phishing email.',           difficulty: 'Hard',   color: '#ef4444', colorDim: 'rgba(239,68,68,0.12)',   players: '5 flags',   tag: 'Analysis'  },
+  { id: 'defense',  title: 'Cyber Defense',      desc: 'Attacks are incoming! Pick the right tool to block each one before it breaks through.', difficulty: 'Medium', color: '#6366f1', colorDim: 'rgba(99,102,241,0.12)', players: '7 waves', tag: 'Strategy' },
+  { id: 'story',    title: 'Social Engineering', desc: 'A branching scenario game — make the right choices or get compromised.',       difficulty: 'Hard',   color: '#ec4899', colorDim: 'rgba(236,72,153,0.12)',  players: '4 scenarios', tag: 'Scenarios' },
+  { id: 'blitz',    title: 'True or False Blitz',desc: 'Answer 12 rapid-fire cybersecurity questions before the 10-second timer runs out.', difficulty: 'Medium', color: '#eab308', colorDim: 'rgba(234,179,8,0.12)', players: '12 questions', tag: 'Speed' },
 ]
 
-const DIFF_COLOR = { Easy: '#22c55e', Medium: '#eab308', Hard: '#ef4444' }
+const DIFF_COLOR = { Easy: '#22c55e', Medium: '#f59e0b', Hard: '#ef4444' }
+const DIFF_BG    = { Easy: 'rgba(34,197,94,0.12)', Medium: 'rgba(245,158,11,0.12)', Hard: 'rgba(239,68,68,0.12)' }
 
 function GameCard({ game, onPlay }) {
+  const Illustration = GAME_SVGS[game.id]
   return (
-    <div className="game-card" style={{ '--gc': game.color }} onClick={() => onPlay(game.id)}>
-      <div className="gc-icon">{game.icon}</div>
+    <div className="game-card" style={{ '--gc': game.color, '--gc-dim': game.colorDim }} onClick={() => onPlay(game.id)}>
+      <div className="gc-illustration">
+        <Illustration />
+      </div>
       <div className="gc-body">
+        <div className="gc-tag" style={{ color: game.color, background: game.colorDim, borderColor: `${game.color}33` }}>
+          {game.tag}
+        </div>
         <div className="gc-title">{game.title}</div>
         <div className="gc-desc">{game.desc}</div>
         <div className="gc-footer">
-          <span className="gc-diff" style={{ color: DIFF_COLOR[game.difficulty] }}>{game.difficulty}</span>
-          <span className="gc-players">{game.players}</span>
-          <span className="gc-play">Play →</span>
+          <span className="gc-diff" style={{ color: DIFF_COLOR[game.difficulty], background: DIFF_BG[game.difficulty] }}>
+            {game.difficulty}
+          </span>
+          <span className="gc-players">👥 {game.players}</span>
+          <button className="gc-play-btn" style={{ background: game.color }} aria-label={`Play ${game.title}`}>
+            Play →
+          </button>
         </div>
       </div>
     </div>
@@ -729,7 +840,8 @@ export default function Games() {
   return (
     <div className="games-page">
       <div className="games-hero">
-        <h1 className="games-title">🎮 Cyber Games</h1>
+        <div className="games-hero-badge">🎮 Interactive Training</div>
+        <h1 className="games-title">Cyber Games</h1>
         <p className="games-subtitle">Learn cybersecurity the fun way — play games, earn knowledge, stay safe.</p>
       </div>
 
