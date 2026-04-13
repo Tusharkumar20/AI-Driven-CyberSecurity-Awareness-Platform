@@ -34,7 +34,7 @@ export default function Chatbot() {
     if (open) inputRef.current?.focus()
   }, [open])
 
-  const send = async (text) => {
+  const send = async (text) =>  {  
     const content = (text || input).trim()
     if (!content || loading) return
 
@@ -173,3 +173,4 @@ export default function Chatbot() {
     </>
   )
 }
+//conflicting
