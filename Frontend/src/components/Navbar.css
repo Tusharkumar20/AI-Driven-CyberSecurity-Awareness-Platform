@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #0b1f2a;
+  background: #0f0020;
   padding: 12px 30px;
   color: white;
 }
@@ -46,5 +46,5 @@
 }
 
 .nav-item:hover {
-  color: #00e6e6;
+  color: #8b5cf6;
 }

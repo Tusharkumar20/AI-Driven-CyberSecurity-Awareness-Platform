@@ -16,10 +16,10 @@ export default function Matrix() {
     const drops = Array(Math.floor(columns)).fill(1);
 
     function draw() {
-      ctx.fillStyle = "rgba(0,0,0,0.05)";
+      ctx.fillStyle = "rgba(10,0,20,0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#22c55e";
+      ctx.fillStyle = "#8b5cf6";
       ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
