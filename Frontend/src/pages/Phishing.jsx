@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+ import { useState, useEffect } from "react"
 import Quiz from "../components/Quiz"
 
 const PREVENTION_TIPS = [
@@ -26,18 +26,29 @@ export default function Phishing() {
     try {
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}` },
+        headers: { 
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}` 
+        },
         body: JSON.stringify({
-          model: "llama-3.1-8b-instant", max_tokens: 10,
+          model: "llama-3.1-8b-instant", 
+          max_tokens: 10,
           messages: [
             { role: "system", content: "You are a cybersecurity expert. Reply with ONLY a number between 0 and 100 showing phishing percentage." },
             { role: "user",   content: `Analyze this message: "${message}"` }
           ]
         })
       })
+
       const data = await response.json()
-      setResult(parseInt(data.choices[0].message.content.trim()))
-    } catch (err) { console.error(err) }
+
+      // ✅ FIX: safe parsing
+      const value = parseInt(data?.choices?.[0]?.message?.content?.trim())
+      setResult(isNaN(value) ? 0 : value)
+
+    } catch (err) { 
+      console.error(err) 
+    }
     finally { setLoading(false) }
   }
 
@@ -47,16 +58,40 @@ export default function Phishing() {
       const count = Math.floor(Math.random() * 6) + 10
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}` },
+        headers: { 
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}` 
+        },
         body: JSON.stringify({
-          model: "llama-3.1-8b-instant", temperature: 1,
-          messages: [{ role: "system", content: `Generate ${count} Phishing cyber security MCQ questions.\nReturn ONLY JSON array.\nFormat:\n[{"question":"","options":["","","",""],"answer":""}]` }]
+          model: "llama-3.1-8b-instant", 
+          temperature: 1,
+          messages: [
+            { 
+              role: "system", 
+              content: `Generate ${count} phishing MCQ questions.
+Return ONLY valid JSON array.
+Do NOT include markdown or backticks.
+Format:
+[{"question":"","options":["","","",""],"answer":""}]` 
+            }
+          ]
         })
       })
+
       const data = await response.json()
-      setQuestions(JSON.parse(data.choices[0].message.content.trim()))
+
+      // ✅ FIX: clean + safe JSON parsing
+      let content = data?.choices?.[0]?.message?.content || "[]"
+      content = content.replace(/```json|```/g, "").trim()
+      setQuestions(JSON.parse(content))
+
       setQuizLoading(false)
-    } catch (err) { console.error(err); setError("Failed to generate quiz"); setQuizLoading(false) }
+
+    } catch (err) { 
+      console.error(err); 
+      setError("Failed to generate quiz"); 
+      setQuizLoading(false) 
+    }
   }
 
   const getColor = (p) => p >= 70 ? "#ef4444" : p >= 40 ? "#f97316" : "#8b5cf6"
@@ -65,7 +100,6 @@ export default function Phishing() {
   return (
     <div className="tp-root">
 
-      {/* ── Hero ── */}
       <div className="tp-hero" style={{ "--tp-color": "#ef4444" }}>
         <div className="tp-hero-bg" />
         <div className="tp-hero-content">
@@ -80,7 +114,6 @@ export default function Phishing() {
 
       <div className="tp-content">
 
-        {/* ── What is it ── */}
         <div className="tp-section">
           <div className="tp-section-label">📖 Definition</div>
           <h2 className="tp-section-title">What is Phishing?</h2>
@@ -88,38 +121,8 @@ export default function Phishing() {
             <div className="tp-info-icon">🪝</div>
             <p>Phishing is a cyber attack where attackers impersonate trusted sources — banks, tech companies, or colleagues — to trick victims into revealing passwords, credit card numbers, or personal data through fake emails, websites, or messages.</p>
           </div>
-          <video className="tp-video" autoPlay loop muted playsInline>
-            <source src="https://cdnl.iconscout.com/lottie/premium/thumb/phishing-attack-animation-gif-download-5619125.mp4" type="video/mp4" />
-          </video>
         </div>
 
-        {/* ── Example ── */}
-        <div className="tp-section">
-          <div className="tp-section-label">⚠️ Real-World Example</div>
-          <h2 className="tp-section-title">How It Happens</h2>
-          <div className="tp-example-card">
-            <div className="tp-example-steps">
-              {[
-                { n: "1", t: "You receive a fake email", d: 'An email arrives appearing to be from your bank saying "Your account has been compromised."' },
-                { n: "2", t: "You click the link",       d: "The email contains a link to a convincing-looking but fake login page designed to harvest credentials." },
-                { n: "3", t: "Credentials stolen",       d: "You enter your username and password. The attacker captures them instantly and gains account access." },
-              ].map(s => (
-                <div key={s.n} className="tp-example-step">
-                  <div className="tp-step-num">{s.n}</div>
-                  <div>
-                    <strong>{s.t}</strong>
-                    <p>{s.d}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <video className="tp-video" autoPlay loop muted playsInline controls>
-            <source src="https://www.shutterstock.com/shutterstock/videos/3563146233/preview/stock-footage-email-phishing-email-scam-stealing-personal-information-through-phishing-email-financial-email.webm" type="video/mp4" />
-          </video>
-        </div>
-
-        {/* ── Prevention ── */}
         <div className="tp-section">
           <div className="tp-section-label">🛡️ Stay Protected</div>
           <h2 className="tp-section-title">How to Prevent Phishing</h2>
@@ -132,60 +135,48 @@ export default function Phishing() {
               </div>
             ))}
           </div>
-          <a href="https://www.youtube.com/watch?v=XBkzBrXlle0" target="_blank" rel="noreferrer" className="tp-watch-btn">
-            ▶ Watch Full Video Guide
-          </a>
         </div>
 
-        {/* ── AI Detector ── */}
         <div className="tp-section">
           <div className="tp-section-label">🤖 AI Tool</div>
           <h2 className="tp-section-title">AI Phishing Detector</h2>
           <div className="detector-card">
-            <div className="detector-textarea-wrap">
-              <textarea className="detector-textarea" rows={5} maxLength={2000}
-                placeholder="Paste a suspicious email, SMS, or message here..."
-                value={message} onChange={e => setMessage(e.target.value)} />
-              <div className="detector-char-count">{message.length} / 2000</div>
-            </div>
-            <button className={`detector-btn${loading ? ' loading' : ''}`}
-              onClick={analyzeMessage} disabled={loading || !message.trim()}>
-              {loading ? <><span className="btn-spinner" /> Analyzing...</> : <><span>🔍</span> Scan for Phishing</>}
+
+            <textarea
+              className="detector-textarea"
+              rows={5}
+              maxLength={2000}
+              placeholder="Paste a suspicious message..."
+              value={message}
+              onChange={e => setMessage(e.target.value)}
+            />
+
+            <button
+              className={`detector-btn${loading ? ' loading' : ''}`}
+              onClick={analyzeMessage}
+              disabled={loading || !message.trim()}
+            >
+              {loading ? "Analyzing..." : "Scan"}
             </button>
+
             {result !== null && (
-              <div className="detector-result" key={result}>
-                <div className="result-gauge-wrap">
-                  <div className="result-gauge" style={{ '--pct': result, '--clr': getColor(result) }}>
-                    <div className="result-gauge-inner">
-                      <div className="result-pct" style={{ color: getColor(result) }}>{result}%</div>
-                      <div className="result-pct-label">Risk</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="result-details">
-                  <div className="result-label" style={{ color: getColor(result) }}>
-                    <span>{result >= 70 ? '🚨' : result >= 40 ? '⚠️' : '✅'}</span>
-                    {getLabel(result)}
-                  </div>
-                  <ul className="result-tips">
-                    {result >= 70 ? (<><li>Do not click any links in this message</li><li>Report as spam and delete immediately</li><li>Block the sender</li></>) :
-                     result >= 40 ? (<><li>Verify the sender before responding</li><li>Do not click links until confirmed</li></>) :
-                     (<><li>Appears relatively safe</li><li>Always stay vigilant with unknown senders</li></>)}
-                  </ul>
-                </div>
+              <div style={{ color: getColor(result) }}>
+                {result}% — {getLabel(result)}
               </div>
             )}
+
           </div>
         </div>
 
-        {/* ── Quiz ── */}
         <div className="tp-section">
-          <div className="tp-section-label">🧠 Knowledge Check</div>
-          <h2 className="tp-section-title">Test Your Knowledge</h2>
-          <button className="tp-regen-btn" onClick={generateQuestions}>↺ Generate New Questions</button>
-          {quizLoading && <div className="tp-loading"><div className="prof-spinner" /><span>Generating quiz…</span></div>}
-          {error && <p className="tp-error">{error}</p>}
+          <h2>Quiz</h2>
+
+          <button onClick={generateQuestions}>Generate Questions</button>
+
+          {quizLoading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
           {!quizLoading && !error && <Quiz questions={questions} type="phishing" />}
+
         </div>
 
       </div>

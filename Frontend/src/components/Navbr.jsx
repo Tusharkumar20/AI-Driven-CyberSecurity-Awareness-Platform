@@ -28,7 +28,7 @@ function Navbar() {
     <nav className="navbar">
 
       <div className="nav-left">
-        <img src="/cyber-logo.svg" alt="CyberSafe Logo" className="nav-logo" />
+        <img src="/Cyber-logo5.svg" alt="CyberSafe Logo" className="nav-logo" />
         <Link to="/main" className="logo">CyberSafe</Link>
       </div>
 
