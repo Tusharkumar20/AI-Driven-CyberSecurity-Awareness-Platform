@@ -30,7 +30,10 @@ export default function Ddos() {
         })
       })
       const data = await response.json()
-      setQuestions(JSON.parse(data.choices[0].message.content.trim()))
+      const raw = data.choices[0].message.content
+      const start = raw.indexOf('[')
+      const end = raw.lastIndexOf(']')
+      setQuestions(JSON.parse(raw.slice(start, end + 1)))
       setLoading(false)
     } catch (err) { console.error(err); setError("Failed to generate quiz. Try again."); setLoading(false) }
   }

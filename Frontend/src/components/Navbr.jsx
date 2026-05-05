@@ -50,6 +50,14 @@ function Navbar() {
         </Link>
 
         <Link
+          to="/report"
+          className={`nav-link ${isActive("/report") ? "nav-link-active" : ""}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          🚨 Report Crime
+        </Link>
+
+        <Link
           to="/profile"
           className={`nav-link ${isActive("/profile") ? "nav-link-active" : ""}`}
           onClick={() => setMenuOpen(false)}

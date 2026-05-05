@@ -3,7 +3,7 @@ import { auth } from '../config/firebase'
 export const awardXP = async (amount) => {
   try {
     const token = await auth.currentUser.getIdToken(true)
-    const res = await fetch('http://localhost:3000/api/profile/xp', {
+    const res = await fetch('/api/profile/xp', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,

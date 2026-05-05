@@ -56,9 +56,10 @@ Format:
       )
 
       const data = await response.json()
-      const text = data.choices[0].message.content.trim()
-
-      const parsed = JSON.parse(text)
+      const raw = data.choices[0].message.content
+      const start = raw.indexOf('[')
+      const end = raw.lastIndexOf(']')
+      const parsed = JSON.parse(raw.slice(start, end + 1))
 
       setQuestions(parsed)
       setLoading(false)

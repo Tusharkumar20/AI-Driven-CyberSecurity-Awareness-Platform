@@ -3918,3 +3918,531 @@ html, body {
   .tp-section-title { font-size: 1.4rem; }
   .ddos-bots { gap: 8px; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   REPORT CRIME PAGE
+═══════════════════════════════════════════════════════ */
+
+.report-page {
+  min-height: 100vh;
+  padding: 100px 20px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ── Hero ── */
+
+.report-hero {
+  text-align: center;
+}
+
+.report-hero-badge {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.report-hero-title {
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 800;
+  color: #e2e8f0;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.report-hero-sub {
+  font-size: 16px;
+  color: #64748b;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Emergency Banner ── */
+
+.report-emergency {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-left: 4px solid #ef4444;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+.emergency-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.report-emergency strong { color: #ef4444; }
+
+/* ── Section ── */
+
+.report-section { display: flex; flex-direction: column; gap: 20px; }
+
+.report-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #22c55e;
+  margin: 0;
+}
+
+.report-section-sub {
+  font-size: 14px;
+  color: #64748b;
+  margin: -8px 0 0;
+  line-height: 1.6;
+}
+
+/* ── Steps Grid ── */
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.step-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--sc) 8%, transparent) 0%, rgba(255,255,255,0.02) 60%);
+  border: 1px solid color-mix(in srgb, var(--sc) 25%, transparent);
+  border-top: 3px solid var(--sc);
+  border-radius: 18px;
+  padding: 28px 24px 26px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25), inset 0 1px 0 color-mix(in srgb, var(--sc) 12%, transparent);
+}
+
+.step-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sc) 10%, transparent) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.step-card:hover {
+  border-color: color-mix(in srgb, var(--sc) 55%, transparent);
+  border-top-color: var(--sc);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px color-mix(in srgb, var(--sc) 20%, transparent), 0 0 28px color-mix(in srgb, var(--sc) 15%, transparent);
+}
+
+.step-card:hover::before { opacity: 1; }
+
+.step-number {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--sc);
+  opacity: 0.13;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -2px;
+}
+
+.step-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sc) 22%, transparent), color-mix(in srgb, var(--sc) 8%, transparent));
+  border: 1px solid color-mix(in srgb, var(--sc) 38%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--sc) 18%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #f1f5f9;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.75;
+}
+
+/* ── Evidence Checklist ── */
+
+.checklist-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #94a3b8;
+  transition: background 0.15s;
+  line-height: 1.5;
+}
+
+.checklist-item:hover { background: rgba(255,255,255,0.05); }
+
+.checklist-item.checked {
+  color: #22c55e;
+  background: rgba(34,197,94,0.07);
+  text-decoration: line-through;
+  text-decoration-color: rgba(34,197,94,0.4);
+}
+
+.check-box {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.checklist-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  font-size: 13px;
+  color: #475569;
+}
+
+.checklist-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.checklist-bar-fill {
+  height: 100%;
+  background: #22c55e;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+/* ── Crime Type Accordion ── */
+
+.crime-list { display: flex; flex-direction: column; gap: 8px; }
+
+.crime-accordion {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.crime-accordion:hover { border-color: color-mix(in srgb, var(--cc) 35%, transparent); }
+
+.crime-acc-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: none;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.crime-acc-header:hover,
+.crime-acc-header.acc-open {
+  background: color-mix(in srgb, var(--cc) 10%, transparent);
+}
+
+.crime-acc-icon { font-size: 22px; flex-shrink: 0; }
+.crime-acc-title { flex: 1; }
+.crime-acc-chevron { font-size: 11px; color: #475569; }
+
+.crime-acc-body {
+  padding: 4px 20px 18px 58px;
+  background: rgba(0,0,0,0.2);
+  animation: accOpen 0.2s ease;
+}
+
+@keyframes accOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.crime-steps-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.crime-steps-list li {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* ── Country Accordion ── */
+
+.country-list { display: flex; flex-direction: column; gap: 8px; }
+
+.country-accordion {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.country-acc-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: none;
+  cursor: pointer;
+  color: #e2e8f0;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.country-acc-header:hover,
+.country-acc-header.acc-open { background: rgba(34,197,94,0.08); }
+
+.country-flag  { font-size: 26px; flex-shrink: 0; }
+.country-name  { flex: 1; font-size: 15px; font-weight: 700; }
+.country-count { font-size: 12px; color: #475569; white-space: nowrap; }
+.country-chevron { font-size: 11px; color: #475569; margin-left: 8px; }
+
+.country-acc-body {
+  padding: 12px 16px 16px;
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: accOpen 0.2s ease;
+}
+
+.agency-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.agency-card:hover {
+  background: rgba(34,197,94,0.08);
+  border-color: rgba(34,197,94,0.3);
+  transform: translateX(4px);
+}
+
+.agency-info { flex: 1; }
+.agency-name { font-size: 14px; font-weight: 700; color: #22c55e; margin-bottom: 4px; }
+.agency-desc { font-size: 13px; color: #64748b; line-height: 1.5; }
+.agency-arrow { font-size: 18px; color: #22c55e; flex-shrink: 0; opacity: 0.6; }
+
+/* ── Footer Tip ── */
+
+.report-footer-tip {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(34,197,94,0.07);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 14px;
+  padding: 18px 22px;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.report-footer-tip span { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.report-footer-tip p { margin: 0; }
+
+/* ── Responsive ── */
+
+@media (max-width: 640px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .step-icon { width: 44px; height: 44px; font-size: 22px; }
+  .crime-acc-body { padding-left: 20px; }
+  .report-page { gap: 40px; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   FORGOT PASSWORD
+═══════════════════════════════════════════════════════ */
+
+.auth-field-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.auth-field-label-row label { margin-bottom: 0; }
+
+.forgot-link {
+  background: none;
+  border: none;
+  color: #22c55e;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.forgot-link:hover { opacity: 0.75; text-decoration: underline; }
+
+.forgot-panel {
+  background: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: forgotSlide 0.25s ease;
+}
+
+@keyframes forgotSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.forgot-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.forgot-panel-icon { font-size: 26px; }
+
+.forgot-panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.forgot-panel-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.forgot-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.forgot-input:focus { border-color: rgba(34, 197, 94, 0.5); }
+.forgot-input::placeholder { color: #374151; }
+
+.forgot-error {
+  font-size: 13px;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.forgot-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.forgot-send-btn {
+  flex: 1;
+  padding: 11px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 10px;
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.forgot-send-btn:hover:not(:disabled) { transform: translateY(-1px); opacity: 0.9; }
+.forgot-send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.forgot-cancel-btn {
+  padding: 11px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.forgot-cancel-btn:hover { background: rgba(255, 255, 255, 0.1); color: #e2e8f0; }
+
+.forgot-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.forgot-success-icon  { font-size: 36px; }
+.forgot-success-title { font-size: 16px; font-weight: 800; color: #22c55e; }
+.forgot-success-sub   { font-size: 13px; color: #64748b; line-height: 1.6; }
+.forgot-success-sub strong { color: #e2e8f0; }

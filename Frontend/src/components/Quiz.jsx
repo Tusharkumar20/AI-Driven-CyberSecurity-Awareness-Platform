@@ -38,8 +38,8 @@ export default function Quiz({ questions }) {
     } else {
 
       setShowResult(true);
-      // Award XP only if user is logged in
-      if (auth.currentUser) {
+      // Award XP only if user is logged in and auth is available
+      if (auth && auth.currentUser) {
         const earned = newScore * XP_PER_CORRECT_ANSWER;
         const updatedXP = await awardXP(earned);
         setTotalXP(updatedXP);

@@ -10,6 +10,7 @@ import Malware from './pages/Malware'
 import Ransomware from './pages/Ransomware'
 import DDoS from './pages/DDoS'
 import Games from './pages/Games'
+import ReportCrime from './pages/ReportCrime'
 import Navbar from './components/Navbr'
 import Chatbot from './components/Chatbot'
 
@@ -35,6 +36,7 @@ function Layout() {
         <Route path="/ransomware" element={<Ransomware />} />
         <Route path="/ddos" element={<DDoS />} />
         <Route path="/games" element={<Games />} />
+        <Route path="/report" element={<ReportCrime />} />
       </Routes>
     </>
   )
