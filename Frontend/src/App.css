@@ -3918,3 +3918,365 @@ html, body {
   .tp-section-title { font-size: 1.4rem; }
   .ddos-bots { gap: 8px; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   REPORT CRIME PAGE
+═══════════════════════════════════════════════════════ */
+
+.report-page {
+  min-height: 100vh;
+  padding: 100px 20px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* ── Hero ── */
+
+.report-hero {
+  text-align: center;
+}
+
+.report-hero-badge {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.report-hero-title {
+  font-size: clamp(28px, 5vw, 46px);
+  font-weight: 800;
+  color: #e2e8f0;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.report-hero-sub {
+  font-size: 16px;
+  color: #64748b;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Emergency Banner ── */
+
+.report-emergency {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-left: 4px solid #ef4444;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+.emergency-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.report-emergency strong { color: #ef4444; }
+
+/* ── Section ── */
+
+.report-section { display: flex; flex-direction: column; gap: 20px; }
+
+.report-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #22c55e;
+  margin: 0;
+}
+
+.report-section-sub {
+  font-size: 14px;
+  color: #64748b;
+  margin: -8px 0 0;
+  line-height: 1.6;
+}
+
+/* ── Steps Grid ── */
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 14px;
+}
+
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  padding: 18px 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.step-card:hover {
+  border-color: rgba(34,197,94,0.3);
+  transform: translateY(-2px);
+}
+
+.step-number {
+  font-size: 11px;
+  font-weight: 800;
+  color: #22c55e;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  min-width: 22px;
+}
+
+.step-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 6px;
+}
+
+.step-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* ── Evidence Checklist ── */
+
+.checklist-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #94a3b8;
+  transition: background 0.15s;
+  line-height: 1.5;
+}
+
+.checklist-item:hover { background: rgba(255,255,255,0.05); }
+
+.checklist-item.checked {
+  color: #22c55e;
+  background: rgba(34,197,94,0.07);
+  text-decoration: line-through;
+  text-decoration-color: rgba(34,197,94,0.4);
+}
+
+.check-box {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.checklist-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  font-size: 13px;
+  color: #475569;
+}
+
+.checklist-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.checklist-bar-fill {
+  height: 100%;
+  background: #22c55e;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+/* ── Crime Type Accordion ── */
+
+.crime-list { display: flex; flex-direction: column; gap: 8px; }
+
+.crime-accordion {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.crime-accordion:hover { border-color: color-mix(in srgb, var(--cc) 35%, transparent); }
+
+.crime-acc-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: none;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.crime-acc-header:hover,
+.crime-acc-header.acc-open {
+  background: color-mix(in srgb, var(--cc) 10%, transparent);
+}
+
+.crime-acc-icon { font-size: 22px; flex-shrink: 0; }
+.crime-acc-title { flex: 1; }
+.crime-acc-chevron { font-size: 11px; color: #475569; }
+
+.crime-acc-body {
+  padding: 4px 20px 18px 58px;
+  background: rgba(0,0,0,0.2);
+  animation: accOpen 0.2s ease;
+}
+
+@keyframes accOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.crime-steps-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.crime-steps-list li {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+/* ── Country Accordion ── */
+
+.country-list { display: flex; flex-direction: column; gap: 8px; }
+
+.country-accordion {
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.country-acc-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: none;
+  cursor: pointer;
+  color: #e2e8f0;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.country-acc-header:hover,
+.country-acc-header.acc-open { background: rgba(34,197,94,0.08); }
+
+.country-flag  { font-size: 26px; flex-shrink: 0; }
+.country-name  { flex: 1; font-size: 15px; font-weight: 700; }
+.country-count { font-size: 12px; color: #475569; white-space: nowrap; }
+.country-chevron { font-size: 11px; color: #475569; margin-left: 8px; }
+
+.country-acc-body {
+  padding: 12px 16px 16px;
+  background: rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: accOpen 0.2s ease;
+}
+
+.agency-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.agency-card:hover {
+  background: rgba(34,197,94,0.08);
+  border-color: rgba(34,197,94,0.3);
+  transform: translateX(4px);
+}
+
+.agency-info { flex: 1; }
+.agency-name { font-size: 14px; font-weight: 700; color: #22c55e; margin-bottom: 4px; }
+.agency-desc { font-size: 13px; color: #64748b; line-height: 1.5; }
+.agency-arrow { font-size: 18px; color: #22c55e; flex-shrink: 0; opacity: 0.6; }
+
+/* ── Footer Tip ── */
+
+.report-footer-tip {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(34,197,94,0.07);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 14px;
+  padding: 18px 22px;
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.report-footer-tip span { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.report-footer-tip p { margin: 0; }
+
+/* ── Responsive ── */
+
+@media (max-width: 640px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  .crime-acc-body { padding-left: 20px; }
+  .report-page { gap: 40px; }
+}
