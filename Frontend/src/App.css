@@ -4021,31 +4021,31 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: linear-gradient(160deg, rgba(34,197,94,0.07) 0%, rgba(255,255,255,0.02) 60%);
-  border: 1px solid rgba(34,197,94,0.22);
-  border-top: 3px solid #22c55e;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--sc) 8%, transparent) 0%, rgba(255,255,255,0.02) 60%);
+  border: 1px solid color-mix(in srgb, var(--sc) 25%, transparent);
+  border-top: 3px solid var(--sc);
   border-radius: 18px;
   padding: 28px 24px 26px;
   overflow: hidden;
   transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25), inset 0 1px 0 rgba(34,197,94,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25), inset 0 1px 0 color-mix(in srgb, var(--sc) 12%, transparent);
 }
 
 .step-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(34,197,94,0.1) 0%, transparent 55%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sc) 10%, transparent) 0%, transparent 55%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
 }
 
 .step-card:hover {
-  border-color: rgba(34,197,94,0.55);
-  border-top-color: #4ade80;
+  border-color: color-mix(in srgb, var(--sc) 55%, transparent);
+  border-top-color: var(--sc);
   transform: translateY(-5px);
-  box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(34,197,94,0.2), 0 0 24px rgba(34,197,94,0.12);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px color-mix(in srgb, var(--sc) 20%, transparent), 0 0 28px color-mix(in srgb, var(--sc) 15%, transparent);
 }
 
 .step-card:hover::before { opacity: 1; }
@@ -4056,8 +4056,8 @@ html, body {
   right: 18px;
   font-size: 48px;
   font-weight: 900;
-  color: #22c55e;
-  opacity: 0.12;
+  color: var(--sc);
+  opacity: 0.13;
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -4068,9 +4068,9 @@ html, body {
   width: 54px;
   height: 54px;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.08));
-  border: 1px solid rgba(34,197,94,0.35);
-  box-shadow: 0 0 14px rgba(34,197,94,0.15);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sc) 22%, transparent), color-mix(in srgb, var(--sc) 8%, transparent));
+  border: 1px solid color-mix(in srgb, var(--sc) 38%, transparent);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--sc) 18%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;

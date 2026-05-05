@@ -3,41 +3,49 @@ import { useState } from 'react'
 const STEPS = [
   {
     icon: '🧘',
+    color: '#22c55e',
     title: 'Stay Calm & Act Quickly',
     desc: 'Do not panic. Cybercrime can be addressed — the sooner you report, the better the chance of recovery. Avoid making impulsive decisions like paying ransoms or deleting evidence.',
   },
   {
     icon: '📸',
+    color: '#3b82f6',
     title: 'Document Everything',
     desc: 'Take screenshots of suspicious messages, emails, websites, transactions, or any content related to the crime. Note the date, time, and any usernames or URLs involved.',
   },
   {
     icon: '🗂️',
+    color: '#f97316',
     title: 'Preserve All Evidence',
     desc: 'Do NOT delete emails, messages, or files — they are crucial evidence. Save all communications and keep original copies. Avoid reformatting devices or changing passwords until advised.',
   },
   {
     icon: '🏦',
+    color: '#eab308',
     title: 'Contact Your Bank Immediately',
     desc: 'If financial fraud is involved, call your bank or card provider right away to freeze transactions, reverse charges, or flag your account. Time is critical for recovering stolen funds.',
   },
   {
     icon: '🚔',
+    color: '#6366f1',
     title: 'File a Local Police Report',
     desc: 'Visit or contact your local police station to file an official cybercrime report. Ask for a crime reference number — you will need it for insurance claims and follow-up investigations.',
   },
   {
     icon: '🌐',
+    color: '#ec4899',
     title: 'Report to National Cybercrime Authority',
     desc: 'Submit a detailed report to your country\'s dedicated cybercrime agency (listed below). Include all evidence: screenshots, emails, transaction records, and any communication with the attacker.',
   },
   {
     icon: '📢',
+    color: '#06b6d4',
     title: 'Report to the Platform Involved',
     desc: 'Report the incident to the relevant platform (Google, Facebook, your email provider, etc.). This helps them take down malicious accounts and protect other users.',
   },
   {
     icon: '🔒',
+    color: '#ef4444',
     title: 'Secure Your Accounts',
     desc: 'Change passwords on all affected accounts. Enable two-factor authentication everywhere. Run an antivirus scan. If identity theft occurred, consider placing a fraud alert with credit bureaus.',
   },
@@ -234,7 +242,7 @@ export default function ReportCrime() {
         </h2>
         <div className="steps-grid">
           {STEPS.map((step, i) => (
-            <div className="step-card" key={i}>
+            <div className="step-card" key={i} style={{ '--sc': step.color }}>
               <div className="step-number">0{i + 1}</div>
               <div className="step-icon">{step.icon}</div>
               <div className="step-body">
