@@ -197,8 +197,7 @@ export default function Chatbot() {
             <div className="chatbot-header-left">
               <div className="chatbot-avatar">🛡️</div>
               <div>
-                <div className="chatbot-name">CyberGuard AI</div>
-                
+                <div className="chatbot-name">CyberGuard AI</div>                
               </div>
             </div>
             <div className="chatbot-header-actions">

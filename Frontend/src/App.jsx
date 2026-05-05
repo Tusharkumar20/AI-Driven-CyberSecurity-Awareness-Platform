@@ -11,7 +11,7 @@ import Ransomware from './pages/Ransomware'
 import DDoS from './pages/DDoS'
 import Games from './pages/Games'
 import Navbar from './components/Navbr'
-import Chatbot from './components/Chatbot'
+import Chatbot from './components/ChatBot'
 
 import "./App.css";
 
