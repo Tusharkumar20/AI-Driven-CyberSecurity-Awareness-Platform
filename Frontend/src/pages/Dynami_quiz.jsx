@@ -56,7 +56,8 @@ Format:
       )
 
       const data = await response.json()
-      const text = data.choices[0].message.content.trim()
+      const raw = data.choices[0].message.content.trim()
+      const text = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '')
 
       const parsed = JSON.parse(text)
 

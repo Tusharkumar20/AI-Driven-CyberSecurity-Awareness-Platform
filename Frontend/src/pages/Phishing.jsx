@@ -54,7 +54,9 @@ export default function Phishing() {
         })
       })
       const data = await response.json()
-      setQuestions(JSON.parse(data.choices[0].message.content.trim()))
+      const raw = data.choices[0].message.content.trim()
+      const json = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '')
+      setQuestions(JSON.parse(json))
       setQuizLoading(false)
     } catch (err) { console.error(err); setError("Failed to generate quiz"); setQuizLoading(false) }
   }
