@@ -1,5 +1,5 @@
 import { auth, googleProvider, firebaseConfigured } from '../config/firebase'
-import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 
@@ -12,6 +12,26 @@ export default function Login() {
   const [error, setError]       = useState('')
   const [loading, setLoading]   = useState(false)
   const [showPw, setShowPw]     = useState(false)
+
+  const [forgotMode, setForgotMode]   = useState(false)
+  const [resetEmail, setResetEmail]   = useState('')
+  const [resetSent, setResetSent]     = useState(false)
+  const [resetError, setResetError]   = useState('')
+  const [resetLoading, setResetLoading] = useState(false)
+
+  const handleForgotPassword = async () => {
+    if (!firebaseConfigured || !auth) { setResetError('Authentication is not configured yet.'); return }
+    if (!resetEmail.trim()) { setResetError('Please enter your email address.'); return }
+    try {
+      setResetError(''); setResetLoading(true)
+      await sendPasswordResetEmail(auth, resetEmail.trim())
+      setResetSent(true)
+    } catch (err) {
+      if (err.code === 'auth/user-not-found')   setResetError('No account found with this email.')
+      else if (err.code === 'auth/invalid-email') setResetError('Please enter a valid email address.')
+      else setResetError('Failed to send reset email. Please try again.')
+    } finally { setResetLoading(false) }
+  }
 
   const handleGoogleLogin = async () => {
     if (!firebaseConfigured || !auth) { setError('Google login is not configured yet.'); return }
@@ -124,7 +144,16 @@ export default function Login() {
           </div>
 
           <div className="auth-field">
-            <label>Password</label>
+            <div className="auth-field-label-row">
+              <label>Password</label>
+              <button
+                type="button"
+                className="forgot-link"
+                onClick={() => { setForgotMode(true); setResetEmail(email); setResetSent(false); setResetError('') }}
+              >
+                Forgot password?
+              </button>
+            </div>
             <div className="auth-pw-wrap">
               <input type={showPw ? 'text' : 'password'} placeholder="••••••••" value={password}
                 onChange={e => setPassword(e.target.value)} disabled={loading}
@@ -134,6 +163,53 @@ export default function Login() {
               </button>
             </div>
           </div>
+
+          {/* ── Forgot Password Panel ── */}
+          {forgotMode && (
+            <div className="forgot-panel">
+              {!resetSent ? (
+                <>
+                  <div className="forgot-panel-header">
+                    <span className="forgot-panel-icon">🔑</span>
+                    <div>
+                      <div className="forgot-panel-title">Reset your password</div>
+                      <div className="forgot-panel-sub">We'll send a reset link to your email</div>
+                    </div>
+                  </div>
+                  <input
+                    className="forgot-input"
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={resetEmail}
+                    onChange={e => setResetEmail(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && handleForgotPassword()}
+                    disabled={resetLoading}
+                    autoFocus
+                  />
+                  {resetError && <div className="forgot-error">{resetError}</div>}
+                  <div className="forgot-actions">
+                    <button className="forgot-send-btn" onClick={handleForgotPassword} disabled={resetLoading}>
+                      {resetLoading ? 'Sending…' : 'Send Reset Link'}
+                    </button>
+                    <button className="forgot-cancel-btn" onClick={() => setForgotMode(false)} disabled={resetLoading}>
+                      Cancel
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <div className="forgot-success">
+                  <div className="forgot-success-icon">✅</div>
+                  <div className="forgot-success-title">Reset email sent!</div>
+                  <div className="forgot-success-sub">
+                    Check <strong>{resetEmail}</strong> for a password reset link. It may take a minute to arrive.
+                  </div>
+                  <button className="forgot-cancel-btn" onClick={() => { setForgotMode(false); setResetSent(false) }}>
+                    Back to Sign In
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
 
           {error && <div className="auth-error">{error}</div>}
 
