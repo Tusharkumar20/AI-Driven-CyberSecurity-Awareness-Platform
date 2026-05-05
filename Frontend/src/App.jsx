@@ -12,7 +12,7 @@ import DDoS from './pages/DDoS'
 import Games from './pages/Games'
 import ReportCrime from './pages/ReportCrime'
 import Navbar from './components/Navbr'
-import Chatbot from './components/Chatbot'
+import Chatbot from './components/ChatBot'
 
 import "./App.css";
 

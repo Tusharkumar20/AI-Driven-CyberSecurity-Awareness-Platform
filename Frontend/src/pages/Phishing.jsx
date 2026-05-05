@@ -169,12 +169,11 @@ Format:
         </div>
 
         <div className="tp-section">
-          <h2>Quiz</h2>
-
-          <button onClick={generateQuestions}>Generate Questions</button>
-
-          {quizLoading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
+          <div className="tp-section-label">🧠 Knowledge Check</div>
+          <h2 className="tp-section-title">Test Your Knowledge</h2>
+          <button className="tp-regen-btn" onClick={generateQuestions}>↺ Generate New Questions</button>
+          {quizLoading && <div className="tp-loading"><div className="prof-spinner" /><span>Generating quiz…</span></div>}
+          {error && <p className="tp-error">{error}</p>}
           {!quizLoading && !error && <Quiz questions={questions} type="phishing" />}
 
         </div>
