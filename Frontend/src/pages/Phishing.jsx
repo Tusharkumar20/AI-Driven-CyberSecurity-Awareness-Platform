@@ -184,7 +184,7 @@ export default function Phishing() {
         <div className="tp-section">
           <div className="tp-section-label">🧠 Knowledge Check</div>
           <h2 className="tp-section-title">Test Your Knowledge</h2>
-          <button className="tp-regen-btn" onClick={generateQuestions}>↺ Generate New Questions</button>
+          <button className="tp-regen-btn" onClick={generateQuestions}>↺ Attempt New Questions</button>
           {quizLoading && <div className="tp-loading"><div className="prof-spinner" /><span>Generating quiz…</span></div>}
           {error && <p className="tp-error">{error}</p>}
           {!quizLoading && !error && <Quiz questions={questions} type="phishing" />}
